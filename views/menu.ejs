@@ -1,0 +1,47 @@
+<%- include("partials/header"); -%>
+<div style=" position:relative; background-image: url(/images/homeFinal.jpg); height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;">
+
+<div class="container" style="padding: 4% 0%">
+  <div class="dropdown menu-dropdown">
+    <button
+      class="btn btn-secondary btn-dark dropdown-toggle"
+      type="button"
+      id="dropdownMenu2"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      Select Category
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <% categories.forEach(function(category) { %>
+      <button class="dropdown-item" onclick="window.location.href='/menu/<%=category.categoryId%>';" type="button"><%=category.categoryName%></button>
+      <% }) %>
+      <button class="dropdown-item" type="button">All</button>
+    </div>
+  </div>
+  
+
+  <div  class="row">
+      <% cards.forEach(function(card) { %>
+        <div class="col-lg-4 col-md-6">
+          
+          <div class="card bg-dark text-white" id="each-card" style="width: 18rem">
+            <img src="<%=card.cardImage%>" class="card-img-top recipe-image" alt="..." />
+            <div class="card-body">
+              <h5  class="card-title text-center"><%=card.cardTitle%></h5>
+              <p class="card-text text-center"><%=card.cardInfo%></p>
+              <span>Rs. <%=card.cardPrice%></span>
+              <button onclick="makeAPostRequest('<%=card.cardId%>')" class="btn btn-primary order-button">Add to cart</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+  </div>
+</div>
+</div>
+
+<%- include("partials/footer"); -%>
